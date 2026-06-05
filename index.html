@@ -629,18 +629,18 @@
             <form id="contact-form" name="contact" data-netlify="true" novalidate>
               <div class="form-group">
                 <input type="text" id="form-name" name="name" required placeholder=" ">
-                <label for="form-name">Full Name</label>
-                <span class="error-msg" id="name-error">Please enter your name.</span>
+                <label for="form-name">Name</label>
+                <span class="error-msg" id="name-error">Name must be at least 3 characters.</span>
               </div>
               <div class="form-group">
                 <input type="email" id="form-email" name="email" required placeholder=" ">
                 <label for="form-email">Email Address</label>
-                <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+                <span class="error-msg" id="email-error">Please enter a valid email address (e.g. name@example.com).</span>
               </div>
               <div class="form-group">
                 <textarea id="form-message" name="message" required placeholder=" " rows="4"></textarea>
                 <label for="form-message">Project Details / Message</label>
-                <span class="error-msg" id="message-error">Please enter your message.</span>
+                <span class="error-msg" id="message-error">Message must be at least 5 characters.</span>
               </div>
               <button type="submit" class="btn btn-primary btn-submit">
                 <span class="btn-text">Send Message</span>

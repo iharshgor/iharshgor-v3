@@ -423,74 +423,150 @@ function initContactForm() {
   const emailInput = document.getElementById("form-email");
   const msgInput = document.getElementById("form-message");
 
-  // Input event triggers labels state
-  const inputs = [nameInput, emailInput, msgInput];
-  inputs.forEach(input => {
+  // -------------------------------------------------------------------------
+  // Validation Rules
+  // -------------------------------------------------------------------------
+
+  /**
+   * Name: must be at least 2 characters, contain at least one space
+   * Name: trim leading/trailing spaces, require at least 3 characters,
+   * and allow letters, hyphens, or apostrophes.
+   */
+  function validateName(value) {
+    const trimmed = value.trim();
+    if (!trimmed) return "Name is required.";
+    if (trimmed.length < 3) return "Name must be at least 3 characters.";
+    return ""; // valid
+  }
+
+  /**
+   * Email: must have a local part, @, domain, and a TLD of 2–10 letters.
+   * Rejects bare domains like 'abhay.@gmail' (no TLD) or 'user@domain'.
+   */
+  function validateEmail(value) {
+    const trimmed = value.trim();
+    if (!trimmed) return "Email address is required.";
+    // Stricter than the HTML spec: requires a proper TLD (e.g. .com, .in)
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,10}$/;
+    if (!emailRegex.test(trimmed)) {
+      return "Please enter a valid email address (e.g. name@example.com).";
+    }
+    return "";
+  }
+
+  /**
+   * Message: must be at least 20 characters so one-letter spam like 'Y' is rejected.
+   */
+  function validateMessage(value) {
+    const trimmed = value.trim();
+    if (!trimmed) return "A message is required.";
+    if (trimmed.length < 5) {
+      return `Message is too short — please provide at least 5 characters (${trimmed.length}/5).`;
+    }
+    return "";
+  }
+
+  // -------------------------------------------------------------------------
+  // Wire validation to each field
+  // -------------------------------------------------------------------------
+
+  /**
+   * Applies a validator function to an input. Sets the browser's
+   * custom validity (which triggers :user-invalid CSS) and updates
+   * the corresponding .error-msg element.
+   */
+  function applyValidation(input, errorId, validatorFn) {
+    const errorEl = document.getElementById(errorId);
+
+    function runCheck() {
+      const msg = validatorFn(input.value);
+      input.setCustomValidity(msg);
+      if (errorEl) errorEl.textContent = msg || errorEl.dataset.default || "";
+    }
+
+    // Validate live as the user types (after first blur/submit)
+    input.addEventListener("input", runCheck);
+    input.addEventListener("blur", runCheck);
+
+    // Run once on init to set initial custom validity without showing errors
+    const initMsg = validatorFn(input.value);
+    input.setCustomValidity(initMsg);
+  }
+
+  // Store default error messages as data attributes for re-use
+  const nameError = document.getElementById("name-error");
+  const emailError = document.getElementById("email-error");
+  const msgError = document.getElementById("message-error");
+  if (nameError) nameError.dataset.default = nameError.textContent;
+  if (emailError) emailError.dataset.default = emailError.textContent;
+  if (msgError) msgError.dataset.default = msgError.textContent;
+
+  applyValidation(nameInput, "name-error", validateName);
+  applyValidation(emailInput, "email-error", validateEmail);
+  applyValidation(msgInput, "message-error", validateMessage);
+
+  // Input event — keeps floating labels in sync (placeholder hack for CSS selector)
+  [nameInput, emailInput, msgInput].forEach(input => {
     if (!input) return;
-    
-    // Initial check
-    if (input.value) input.classList.add('not-empty');
-    
+    if (input.value) input.setAttribute('placeholder', ' ');
     input.addEventListener('input', () => {
-      if (input.value) {
-        input.setAttribute('placeholder', ' '); // placeholder hack to satisfy css selector
-      }
+      input.setAttribute('placeholder', ' ');
     });
   });
 
-  // Intercept Form submission
+  // -------------------------------------------------------------------------
+  // Form Submit
+  // -------------------------------------------------------------------------
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Trigger validation styling states
-    nameInput.checkValidity();
-    emailInput.checkValidity();
-    msgInput.checkValidity();
+    // Force-run all validators so errors show on submit even if untouched
+    [nameInput, emailInput, msgInput].forEach(input => {
+      input.dispatchEvent(new Event('blur'));
+    });
 
-    if (form.checkValidity()) {
-      // Show loading status inside button
-      const submitBtn = form.querySelector('.btn-submit');
-      const btnText = submitBtn.querySelector('.btn-text');
-      const spinner = submitBtn.querySelector('.spinner');
+    if (!form.checkValidity()) return;
 
-      submitBtn.disabled = true;
-      btnText.style.opacity = '0.3';
-      spinner.removeAttribute('hidden');
+    // Show loading state inside submit button
+    const submitBtn = form.querySelector('.btn-submit');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const spinner = submitBtn.querySelector('.spinner');
 
-      // Send form data to Netlify via AJAX Fetch POST
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString()
-      })
-      .then(() => {
-        // Reset button loading states
-        submitBtn.disabled = false;
-        btnText.style.opacity = '1';
-        spinner.setAttribute('hidden', 'true');
+    submitBtn.disabled = true;
+    btnText.style.opacity = '0.3';
+    spinner.removeAttribute('hidden');
 
-        // Reset inputs
-        form.reset();
-        
-        // Show Success native modal dialog
-        dialog.showModal();
-      })
-      .catch((error) => {
-        console.error("Form submission error:", error);
-        // Fallback: reset loader states
-        submitBtn.disabled = false;
-        btnText.style.opacity = '1';
-        spinner.setAttribute('hidden', 'true');
-        alert("Oops! There was an issue submitting your form. Please try again.");
+    // Send form data to Netlify via AJAX Fetch POST
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(() => {
+      submitBtn.disabled = false;
+      btnText.style.opacity = '1';
+      spinner.setAttribute('hidden', 'true');
+      form.reset();
+      // Reset custom validity after reset so fields are clean
+      [nameInput, emailInput, msgInput].forEach(input => {
+        input.setCustomValidity(" "); // mark invalid again but don't show error
       });
-    }
+      dialog.showModal();
+    })
+    .catch((error) => {
+      console.error("Form submission error:", error);
+      submitBtn.disabled = false;
+      btnText.style.opacity = '1';
+      spinner.setAttribute('hidden', 'true');
+      alert("Oops! There was an issue submitting your form. Please try again.");
+    });
   });
 
   // Close Dialog handler
   closeBtn.addEventListener("click", () => {
     dialog.close();
   });
-  
+
   // Close dialog on clicking overlay background
   dialog.addEventListener("click", (e) => {
     const dialogDimensions = dialog.getBoundingClientRect();
