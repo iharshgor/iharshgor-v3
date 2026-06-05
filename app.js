@@ -198,7 +198,7 @@ Available commands:
     <p><strong class="label">OS:</strong> Linux / AWS / GCP</p>
     <p><strong class="label">Kernel:</strong> Docker / Kubernetes</p>
     <p><strong class="label">Shell:</strong> Bash / GitLab Runner</p>
-    <p><strong class="label">Location:</strong> Ahmedabad, India</p>
+    <p><strong class="label">Location:</strong> Bhuj, India</p>
     <p><strong class="label">Focus:</strong> Cloud (AWS/GCP), DevOps & AI Agents</p>
   </div>
 </div>`,
@@ -521,12 +521,14 @@ function initMobileMenu() {
     
     if (!isExpanded) {
       mobileNav.style.display = "block";
+      document.body.classList.add("no-scroll");
       // Tiny delay for visual transition execution
       setTimeout(() => {
         mobileNav.setAttribute("aria-hidden", "false");
       }, 10);
     } else {
       mobileNav.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
       setTimeout(() => {
         if (toggleBtn.getAttribute("aria-expanded") === "false") {
           mobileNav.style.display = "none";
