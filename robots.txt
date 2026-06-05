@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alexriver.dev/sitemap.xml
+# Block access to any hidden or config files
+Disallow: /.git/
+Disallow: /netlify.toml
+
+Sitemap: https://iharshgor.com/sitemap.xml
