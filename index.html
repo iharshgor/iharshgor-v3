@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harsh Gor | Application Developer & DevOps Engineer</title>
+  
+  <meta name="description" content="Portfolio of Harsh Gor, an Application Developer & DevOps Engineer specializing in Python, FastAPI, AWS/GCP Cloud, Kubernetes, Terraform, LLMs, and MCP agents.">
+  <meta name="keywords" content="Harsh Gor, DevOps Engineer, Python Developer, AWS Cloud, GCP, Kubernetes, CI/CD, Terraform, FastAPI, LLM, MCP, Agents">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%2300f2fe'/><stop offset='100%' stop-color='%234facfe'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='%2306070a' stroke='url(%23g)' stroke-width='6'/><text x='51%' y='64%' font-family='system-ui, -apple-system, sans-serif' font-weight='800' font-size='42' fill='url(%23g)' text-anchor='middle'>HG</text></svg>">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iharshgor.com/">
+  <meta property="og:title" content="Harsh Gor | Application Developer & DevOps Engineer">
+  <meta property="og:description" content="Portfolio of Harsh Gor, an Application Developer & DevOps Engineer specializing in Python backend, cloud architectures (AWS/GCP), and AI agent systems.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Google AdSense client script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9594814101637708" crossorigin="anonymous"></script>
+
+  <!-- CSS stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- SEO JSON-LD Structured Data Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Harsh Gor",
+    "jobTitle": "Senior Software Engineer | Application Developer & DevOps Engineer",
+    "url": "https://iharshgor.com",
+    "sameAs": [
+      "https://github.com/iharshgor",
+      "https://linkedin.com/in/iharshgor"
+    ],
+    "description": "Application Developer & DevOps Engineer specializing in Python backend systems, AWS/GCP cloud architectures, LLMs, MCP servers, and automated CI/CD pipelines.",
+    "knowsAbout": [
+      "DevOps Engineering",
+      "CI/CD Pipelines (Jenkins, GitLab CI)",
+      "AWS & GCP Cloud Architecture",
+      "Python, FastAPI & AWS Lambda",
+      "AI Agents & Model Context Protocol (MCP)",
+      "Large Language Models (LLM) Integration",
+      "Infrastructure as Code (Terraform)"
+    ]
+  }
+  </script>
+
+  <!-- Prevent Flash of Unstyled Content (FOUC) -->
+  <meta name="color-scheme" content="light dark">
+  <script>
+    {
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+      
+      document.documentElement.setAttribute("data-theme", theme);
+      document.querySelector('meta[name="color-scheme"]').content = theme === "dark" ? "dark" : "light";
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Background Canvas for Interactive Particles/Grid -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Modern AI Technical Grid Overlay -->
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- Liquid Floating Background Blobs -->
+  <div class="liquid-bg" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#" class="nav-logo" aria-label="Harsh Gor Portfolio Home">
+        <span class="logo-accent">&lt;</span>
+        <span class="logo-text">Harsh.Gor</span>
+        <span class="logo-accent"> /&gt;</span>
+      </a>
+      
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+
+        
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-toggle" class="mobile-toggle-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle Navigation Menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-nav" class="mobile-drawer" aria-hidden="true">
+    <nav class="mobile-drawer-nav">
+      <ul class="mobile-nav-list">
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        
+        <div class="hero-content">
+          <div class="badge-container">
+            <span class="hero-badge">GCP Certified Cloud Engineer</span>
+          </div>
+          <h1 class="hero-title">
+            Scaling Systems & <br>
+            <span class="gradient-text">Deploying Code</span>
+          </h1>
+          <p class="hero-lead">
+            Hi, I'm <strong class="highlight-text">Harsh Gor</strong>. I am an Application Developer & DevOps Engineer. I design secure backend APIs in Python (FastAPI/Lambda), manage cloud architectures (AWS/GCP), and build agentic AI systems using LLMs and MCP servers.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              View Work
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+          </div>
+        </div>
+        
+        <!-- Interactive Terminal Simulator -->
+        <div class="hero-visual">
+          <div class="terminal-window" id="dev-terminal">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="terminal-title">harsh@cloud-shell: ~</div>
+              <div class="terminal-spacer"></div>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-history" id="terminal-history">
+                <p class="terminal-line system-msg">Welcome to Harsh's interactive shell. Type 'help' to see commands.</p>
+                <p class="terminal-line"><span class="prompt">harsh@cloud-shell:~$</span> <span class="cmd-run">neofetch</span></p>
+                <div class="neofetch-output">
+                  <div class="neofetch-info">
+                    <p><strong class="highlight-text">harsh@cloud-shell</strong></p>
+                    <p>------------------</p>
+                    <p><strong class="label">OS:</strong> Linux / AWS / GCP</p>
+                    <p><strong class="label">Kernel:</strong> Docker / Kubernetes</p>
+                    <p><strong class="label">Shell:</strong> Bash / GitLab Runner</p>
+                    <p><strong class="label">Location:</strong> Ahmedabad, India</p>
+                    <p><strong class="label">Focus:</strong> Cloud (AWS/GCP), DevOps & AI Agents</p>
+                  </div>
+                </div>
+              </div>
+              <div class="terminal-input-line">
+                <span class="prompt">harsh@cloud-shell:~$</span>
+                <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" aria-label="Terminal Command Input">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+          <div class="about-text-card glass-card">
+            <h3>Who I am</h3>
+            <p>
+              I am an Application Developer and DevOps Engineer currently based in Ahmedabad. With a solid foundation in both software development and systems operations, I build secure RESTful backends in Python (FastAPI, AWS Lambda), design high-performance cloud architectures on AWS and GCP, and build AI workflows using LLMs, MCP servers, and autonomous agents.
+            </p>
+            <p>
+              I am an enthusiast, hungry to learn, and easily adaptable. I specialize in streamlining build infrastructure using Jenkins, GitLab CI/CD, and Terraform, enabling developers to ship code quickly and safely. My goal is to bridge the gap between engineering teams, cloud systems, and cutting-edge artificial intelligence.
+            </p>
+            <div class="personal-metrics">
+              <div class="metric">
+                <span class="metric-num">5+ Years</span>
+                <span class="metric-label">Industry Experience</span>
+              </div>
+              <div class="metric">
+                <span class="metric-num">AWS & GCP</span>
+                <span class="metric-label">Multi-Cloud Management</span>
+              </div>
+              <div class="metric">
+                <span class="metric-num">AI & Agents</span>
+                <span class="metric-label">LLMs & MCP Servers</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="about-visual-card glass-card">
+            <div class="card-glow"></div>
+            <h3>Core Principles</h3>
+            <ul class="philosophy-list">
+              <li>
+                <div class="phil-num">01</div>
+                <div>
+                  <h4>Multi-Cloud Security</h4>
+                  <p>Design secure, containerized deployment pipelines across AWS and GCP (ECS, GKE, ALB) with VPC isolation and identity access management.</p>
+                </div>
+              </li>
+              <li>
+                <div class="phil-num">02</div>
+                <div>
+                  <h4>Infrastructure as Code</h4>
+                  <p>Declare and manage scalable environments cleanly using Terraform, avoiding manual cloud drift.</p>
+                </div>
+              </li>
+              <li>
+                <div class="phil-num">03</div>
+                <div>
+                  <h4>Agentic Integrations</h4>
+                  <p>Build Model Context Protocol (MCP) servers and LLM systems enabling automated interactions between servers and models.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Timeline Section -->
+    <section id="experience" class="experience-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-title">Work Experience</h2>
+        
+        <div class="timeline">
+          <!-- Job 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">04/2025 - Present</div>
+            <div class="timeline-content glass-card">
+              <span class="job-badge">Current Role</span>
+              <h3>Python Backend Developer</h3>
+              <h4 class="company-name">Aviato Consulting</h4>
+              <p class="job-summary">
+                Leading Python backend development, specializing in AI-driven SaaS applications, spatial computing, and LiDAR processing pipelines.
+              </p>
+              <ul class="job-bullets">
+                <li>Developed an autonomous AI agent for a code migration and refactoring SaaS application.</li>
+                <li>Created a 3D mapping and floor planning application utilizing LiDAR data and a custom damage assessment pipeline.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">04/2024 - 03/2025</div>
+            <div class="timeline-content glass-card">
+              <h3>Sr. Software Engineer</h3>
+              <h4 class="company-name">SolGuruz LLP | Ahmedabad</h4>
+              <p class="job-summary">
+                Worked as a Python Developer and DevOps Engineer specializing in microservices backends, multi-cloud architectures, and AI agent platforms.
+              </p>
+              <ul class="job-bullets">
+                <li>Designed and orchestrated a fully automated CI/CD pipeline for containerized deployments using AWS CodePipeline, CodeBuild, and CodeDeploy.</li>
+                <li>Led AWS, GCP, and DigitalOcean cloud architecture design and management, focusing on security, scalability, serverless, and traditional setups.</li>
+                <li>Developed robust microservices backends and APIs using FastAPI and AWS Lambda in Python for CRM and Gig Marketplace projects.</li>
+                <li>Designed and integrated custom LLM-based agentic workflows and Model Context Protocol (MCP) server configurations to automate developer workflows.</li>
+                <li>Leveraged key AWS services: ECR, ECS, Route53, S3, CloudFront, WAF, VPC, RDS, EC2, IAM, ALB, and CloudWatch.</li>
+                <li>Integrated ReactJS for intuitive admin dashboards, ensuring smooth collaboration with frontend teams.</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Job 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">06/2022 - 02/2024</div>
+            <div class="timeline-content glass-card">
+              <h3>Software Developer</h3>
+              <h4 class="company-name">AeonX Digital Solutions Pvt. Ltd. | Bhuj</h4>
+              <p class="job-summary">
+                Focused on developing secure RESTful APIs and digital campaign systems.
+              </p>
+              <ul class="job-bullets">
+                <li>Led the development of a secure API-driven digital signature platform with PFX certificate uploads and PDF signing capabilities, ensuring secure certificate management and audit trails.</li>
+                <li>Contributed to a QR-coded voucher system enabling campaign creation with customizable voucher values, expiry dates, and multi-level approvals.</li>
+                <li>Designed and implemented RESTful APIs enabling seamless communication between mobile/web applications and servers.</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Job 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">09/2019 - 06/2022</div>
+            <div class="timeline-content glass-card">
+              <h3>Software Developer</h3>
+              <h4 class="company-name">Arkay Apps Pvt. Ltd. | Bhuj</h4>
+              <p class="job-summary">
+                Engineered fintech portals and set up continuous integration systems.
+              </p>
+              <ul class="job-bullets">
+                <li>Worked closely with customers to develop fintech applications that land loans to users, pay utility bills, and pay back loans in installments.</li>
+                <li>Streamlined build, test, and deploy processes using Jenkins CI/CD and GitLab/GitHub runners.</li>
+                <li>Played an active role in the containerization (Docker) of new and existing applications.</li>
+                <li>Led and delivered multiple releases of an activity and time-tracking desktop application.</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Job 4 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">12/2018 - 09/2019</div>
+            <div class="timeline-content glass-card">
+              <h3>Software Developer</h3>
+              <h4 class="company-name">Oviyum Technologies | Bhuj</h4>
+              <p class="job-summary">
+                Built Python-based pipelines and image OCR processing servers.
+              </p>
+              <ul class="job-bullets">
+                <li>Developed a comprehensive image processing pipeline using Python, RabbitMQ, and Machine Learning for efficient vehicle image ingestion.</li>
+                <li>Designed and implemented a specialized OCR system optimized for vehicle images, accurately extracting vehicle make, model, and license plate numbers.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-title">Technical Expertise</h2>
+        
+        <!-- Tabbed Skills Categories -->
+        <div class="skills-tab-container glass-card">
+          <div class="skills-tabs" role="tablist" aria-label="Skills Categories">
+            <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="devops-panel" id="tab-devops">DevOps & Cloud</button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="backend-panel" id="tab-backend" tabindex="-1">Backend & AI</button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="certifications-panel" id="tab-certs" tabindex="-1">Certifications & Education</button>
+          </div>
+          
+          <!-- Panels -->
+          <div class="tab-panel active" id="devops-panel" role="tabpanel" aria-labelledby="tab-devops">
+            <div class="skills-grid">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">CI/CD Pipelines (Jenkins, GitLab CI, AWS CodePipeline)</span>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Multi-Cloud Management (AWS, GCP, Route53, VPC, ECS, GKE, S3)</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Containerization & Orchestration (Docker, Kubernetes)</span>
+                  <span class="skill-percent">88%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 88%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Infrastructure as Code (Terraform)</span>
+                  <span class="skill-percent">85%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-panel" id="backend-panel" role="tabpanel" aria-labelledby="tab-backend" hidden>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Python (FastAPI, Django, AWS Lambda)</span>
+                  <span class="skill-percent">95%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">AI Agent Integration (LLM API Orchestrations, MCP servers, autonomous agents)</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">RESTful API Design & Cryptography (Digital Signatures)</span>
+                  <span class="skill-percent">90%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Databases & Brokers (PostgreSQL, RDS, RabbitMQ)</span>
+                  <span class="skill-percent">85%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-panel" id="certifications-panel" role="tabpanel" aria-labelledby="tab-certs" hidden>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Google Associate Cloud Engineer (ACE)</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">GitHub Foundations Certification</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">M.Sc. IT (K.S.K.V. Kachchh University) - Grade: A+</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">Terraform Google Cloud / AWS Accreditations</span>
+                  <span class="skill-percent">100%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 100%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section scroll-reveal">
+      <div class="container">
+        <div class="projects-header">
+          <h2 class="section-title">Selected Projects</h2>
+          
+          <!-- Tag Filter Menu -->
+          <div class="filter-menu">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="devops">DevOps</button>
+            <button class="filter-btn" data-filter="backend">Backend</button>
+            <button class="filter-btn" data-filter="fintech">Fintech & Tools</button>
+          </div>
+        </div>
+        
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-grid">
+          
+          <!-- Project 1 -->
+          <article class="project-card glass-card" data-category="devops">
+            <div class="project-info">
+              <span class="project-tag">CI/CD & Infrastructure</span>
+              <h3 class="project-title">AWS CodePipeline Automation</h3>
+              <p class="project-desc">
+                Orchestrated a fully automated CI/CD pipeline for containerized deployments using AWS CodePipeline, CodeBuild, ECR, ECS, and ALB to automate builds and test processes.
+              </p>
+              <div class="project-tech">
+                <span>AWS ECS</span>
+                <span>CodePipeline</span>
+                <span>Docker</span>
+                <span>Terraform</span>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 2 -->
+          <article class="project-card glass-card" data-category="backend">
+            <div class="project-info">
+              <span class="project-tag">API Platform</span>
+              <h3 class="project-title">Digital Signature Engine</h3>
+              <p class="project-desc">
+                Developed a secure API-driven digital signature platform supporting PFX certificate uploads and PDF signing. Focused on robust certificate cryptography and secure audit logs.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>FastAPI</span>
+                <span>Cryptography</span>
+                <span>AWS S3</span>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 3 -->
+          <article class="project-card glass-card" data-category="fintech">
+            <div class="project-info">
+              <span class="project-tag">Fintech Systems</span>
+              <h3 class="project-title">Automated Installment Portal</h3>
+              <p class="project-desc">
+                Co-developed a fintech app enabling users to take microloans, pay off utility bills immediately, and automatically repay loans via monthly installment plans.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>Django</span>
+                <span>PostgreSQL</span>
+                <span>Jenkins</span>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 4 -->
+          <article class="project-card glass-card" data-category="backend">
+            <div class="project-info">
+              <span class="project-tag">Machine Learning & APIs</span>
+              <h3 class="project-title">Vehicle OCR Processing Pipeline</h3>
+              <p class="project-desc">
+                Built an asynchronous image processing pipeline utilizing RabbitMQ and ML OCR to ingest vehicle images and extract license plate, make, and model details.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>RabbitMQ</span>
+                <span>OCR Engine</span>
+                <span>Docker</span>
+              </div>
+            </div>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-title">Get in Touch</h2>
+        
+        <div class="contact-grid">
+          <div class="contact-info-card glass-card">
+            <h3>Let's build something epic</h3>
+            <p>
+              I am always happy to connect and discuss backend engineering, cloud architectures, AI systems, or DevOps pipelines. Feel free to contact me via email or submit this form.
+            </p>
+            <ul class="contact-details-list">
+              <li>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>harshmgor@gmail.com</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+91 95861 42795</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Ahmedabad, Gujarat, India</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="contact-form-card glass-card">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <input type="text" id="form-name" required placeholder=" ">
+                <label for="form-name">Full Name</label>
+                <span class="error-msg" id="name-error">Please enter your name.</span>
+              </div>
+              <div class="form-group">
+                <input type="email" id="form-email" required placeholder=" ">
+                <label for="form-email">Email Address</label>
+                <span class="error-msg" id="email-error">Please enter a valid email address.</span>
+              </div>
+              <div class="form-group">
+                <textarea id="form-message" required placeholder=" " rows="4"></textarea>
+                <label for="form-message">Project Details / Message</label>
+                <span class="error-msg" id="message-error">Please enter your message.</span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit">
+                <span class="btn-text">Send Message</span>
+                <span class="spinner" hidden></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <p>&copy; 2026 Harsh Gor. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/iharshgor" target="_blank" rel="noopener" aria-label="Github Profile">Github</a>
+        <a href="https://linkedin.com/in/iharshgor" target="_blank" rel="noopener" aria-label="LinkedIn Profile">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Dialog for Submission Success -->
+  <dialog id="success-dialog" class="glass-dialog">
+    <div class="dialog-content">
+      <div class="success-icon-wrap">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3>Message Sent!</h3>
+      <p>Thank you for reaching out, Harsh will get back to you shortly.</p>
+      <button id="close-dialog-btn" class="btn btn-primary">Dismiss</button>
+    </div>
+  </dialog>
+
+  <!-- JavaScript file -->
+  <script src="app.js"></script>
+</body>
+</html>
