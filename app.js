@@ -457,8 +457,13 @@ function initContactForm() {
       btnText.style.opacity = '0.3';
       spinner.removeAttribute('hidden');
 
-      // Simulate network request latency
-      setTimeout(() => {
+      // Send form data to Netlify via AJAX Fetch POST
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+      .then(() => {
         // Reset button loading states
         submitBtn.disabled = false;
         btnText.style.opacity = '1';
@@ -469,7 +474,15 @@ function initContactForm() {
         
         // Show Success native modal dialog
         dialog.showModal();
-      }, 1500);
+      })
+      .catch((error) => {
+        console.error("Form submission error:", error);
+        // Fallback: reset loader states
+        submitBtn.disabled = false;
+        btnText.style.opacity = '1';
+        spinner.setAttribute('hidden', 'true');
+        alert("Oops! There was an issue submitting your form. Please try again.");
+      });
     }
   });
 

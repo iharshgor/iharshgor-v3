@@ -599,19 +599,19 @@
           </div>
           
           <div class="contact-form-card glass-card">
-            <form id="contact-form" novalidate>
+            <form id="contact-form" name="contact" data-netlify="true" novalidate>
               <div class="form-group">
-                <input type="text" id="form-name" required placeholder=" ">
+                <input type="text" id="form-name" name="name" required placeholder=" ">
                 <label for="form-name">Full Name</label>
                 <span class="error-msg" id="name-error">Please enter your name.</span>
               </div>
               <div class="form-group">
-                <input type="email" id="form-email" required placeholder=" ">
+                <input type="email" id="form-email" name="email" required placeholder=" ">
                 <label for="form-email">Email Address</label>
                 <span class="error-msg" id="email-error">Please enter a valid email address.</span>
               </div>
               <div class="form-group">
-                <textarea id="form-message" required placeholder=" " rows="4"></textarea>
+                <textarea id="form-message" name="message" required placeholder=" " rows="4"></textarea>
                 <label for="form-message">Project Details / Message</label>
                 <span class="error-msg" id="message-error">Please enter your message.</span>
               </div>
