@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initProjectsFilter();
   initContactForm();
   initMobileMenu();
-  initScrollAnimationsFallback();
+  initScrollReveal();
 });
 
 /* ==========================================================================
@@ -576,40 +576,38 @@ function initMobileMenu() {
 }
 
 /* ==========================================================================
-   Scroll-Driven Animations Fallback
+   Scroll Reveal Animations (IntersectionObserver-driven)
    ========================================================================== */
-function initScrollAnimationsFallback() {
-  // Check browser support for CSS view-timeline
-  const supportsScrollTimeline = CSS.supports('(animation-timeline: view()) and (animation-range: entry)');
-  
-  if (!supportsScrollTimeline) {
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-    
-    // Set initial fallback CSS layout
-    revealElements.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(40px)';
-      el.style.transition = 'opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll(".scroll-reveal");
+  if (!revealElements.length) return;
+
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // No animation support / reduced motion: leave everything visible.
+  if (prefersReduced || !("IntersectionObserver" in window)) return;
+
+  // Signal CSS that JS is active, so the hidden initial state applies.
+  // (Without this class the site stays fully visible if JS fails.)
+  document.documentElement.classList.add("reveal-ready");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    // Stagger only items that enter together (e.g. a grid of cards).
+    // Items that scroll in one-by-one (the timeline) each arrive in their
+    // own batch, so they reveal immediately with no added delay.
+    let batchIndex = 0;
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = Math.min(batchIndex++ * 90, 360);
+        setTimeout(() => entry.target.classList.add("is-visible"), delay);
+        obs.unobserve(entry.target); // reveal once, then stop watching
+      }
     });
+  }, {
+    root: null,
+    threshold: 0.12,
+    rootMargin: "0px 0px -8% 0px" // trigger slightly before fully in view
+  });
 
-    const observerOptions = {
-      root: null, // Viewport
-      threshold: 0.15 // Trigger when 15% is visible
-    };
-
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          // Unobserve once shown to prevent redundant calculations
-          obs.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    revealElements.forEach(el => {
-      observer.observe(el);
-    });
-  }
+  revealElements.forEach(el => observer.observe(el));
 }
