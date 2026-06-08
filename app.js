@@ -546,6 +546,7 @@ function initMobileMenu() {
     
     if (!isExpanded) {
       mobileNav.style.display = "block";
+      mobileNav.removeAttribute("inert"); // drawer is open: links are focusable
       document.body.classList.add("no-scroll");
       // Tiny delay for visual transition execution
       setTimeout(() => {
@@ -553,6 +554,7 @@ function initMobileMenu() {
       }, 10);
     } else {
       mobileNav.setAttribute("aria-hidden", "true");
+      mobileNav.setAttribute("inert", ""); // drawer is closed: keep links out of the tab order
       document.body.classList.remove("no-scroll");
       setTimeout(() => {
         if (toggleBtn.getAttribute("aria-expanded") === "false") {

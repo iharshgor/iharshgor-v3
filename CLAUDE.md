@@ -36,7 +36,7 @@ Single large stylesheet using CSS custom properties for theming (driven by `[dat
 
 ## Conventions & gotchas
 
-- **SEO/meta is load-bearing.** `index.html`'s head contains canonical URL, Open Graph + Twitter cards (pointing at `og-preview.png`, 1200×630), and a JSON-LD `application/ld+json` block. `sitemap.xml`, `robots.txt`, and `ads.txt` are also shipped. Keep these consistent when content (title, description, sections) changes.
-- **Analytics**: Google Analytics (GA4, `G-4J0Y87FEVF`) and Google AdSense are loaded in the head.
+- **SEO/meta is load-bearing.** `index.html`'s head contains canonical URL, Open Graph + Twitter cards (pointing at `og-preview.png`, 1200×630), and a JSON-LD `application/ld+json` block. `sitemap.xml` and `robots.txt` are also shipped. The head preloads the Outfit-800 latin woff2 (the hero `<h1>`/LCP font) — if the Google Fonts version bumps (currently `v15`), update that preload URL too. Keep these consistent when content (title, description, sections) changes.
+- **Analytics**: Google Analytics (GA4, `G-4J0Y87FEVF`) is loaded in the head. (AdSense was removed for mobile performance — it accounted for ~220 KiB of the unused JS dragging mobile LCP.)
 - **Caching**: `netlify.toml` sets `*.css` and `*.js` to `immutable` 1-year cache. Because filenames are not hashed, a hard refresh may be needed to see local changes reflected against a deployed version, but this does not affect deploys (Netlify invalidates on change).
 - Section `id`s in `index.html` (`#hero`, `#about`, `#experience`, `#skills`, `#projects`, `#contact`) are the nav anchor targets — renaming one means updating both nav menus (desktop `.main-nav` and mobile drawer).

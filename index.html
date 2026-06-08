@@ -47,10 +47,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Preload the hero <h1> font (Outfit 800, latin subset) so the LCP text paints sooner -->
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/outfit/v15/QGYyz_MVcBeNP4NjuGObqx1XmO1I4bCyO4a0EwIrq6c.woff2">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Google AdSense client script -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9594814101637708" crossorigin="anonymous"></script>
 
   <!-- CSS stylesheet -->
   <link rel="stylesheet" href="style.css">
@@ -100,7 +99,7 @@
   <!-- Navigation Header -->
   <header class="site-header">
     <div class="nav-container">
-      <a href="#" class="nav-logo" aria-label="Harsh Gor Portfolio Home">
+      <a href="#" class="nav-logo" aria-label="Harsh.Gor — Portfolio Home">
         <span class="logo-accent">&lt;</span>
         <span class="logo-text">Harsh.Gor</span>
         <span class="logo-accent"> /&gt;</span>
@@ -130,7 +129,7 @@
   </header>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-nav" class="mobile-drawer" aria-hidden="true">
+  <div id="mobile-nav" class="mobile-drawer" aria-hidden="true" inert>
     <nav class="mobile-drawer-nav">
       <ul class="mobile-nav-list">
         <li><a href="#about" class="mobile-nav-link">About</a></li>
