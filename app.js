@@ -1,7 +1,6 @@
 // app.js
 
 document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
   initCanvasBackground();
   initTerminal();
   initTabs();
@@ -10,42 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initScrollAnimationsFallback();
 });
-
-/* ==========================================================================
-   Theme Management
-   ========================================================================== */
-function initTheme() {
-  const themeToggleBtn = document.getElementById("theme-toggle");
-  const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
-
-  const getTheme = () => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
-
-  const setTheme = (theme) => {
-    document.documentElement.setAttribute("data-theme", theme);
-    metaColorScheme.content = theme === "dark" ? "dark" : "light";
-    localStorage.setItem("theme", theme);
-  };
-
-  // Click handler
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", () => {
-      const currentTheme = getTheme();
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      setTheme(newTheme);
-    });
-  }
-
-  // Listen for system changes
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (!localStorage.getItem("theme")) {
-      setTheme(e.matches ? "dark" : "light");
-    }
-  });
-}
 
 /* ==========================================================================
    Interactive Canvas Grid / Particle Background
@@ -90,9 +53,7 @@ function initCanvasBackground() {
     }
 
     draw() {
-      // Fetch dynamic colors based on theme context
-      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-      ctx.fillStyle = isDark ? "rgba(0, 240, 255, 0.15)" : "rgba(92, 60, 242, 0.08)";
+      ctx.fillStyle = "rgba(0, 240, 255, 0.15)";
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
@@ -185,7 +146,6 @@ Available commands:
   <strong class="highlight-text">about</strong>    - Learn more about Harsh's profile
   <strong class="highlight-text">skills</strong>   - List cloud, programming, and AI competencies
   <strong class="highlight-text">projects</strong> - Show real-world engineering highlights
-  <strong class="highlight-text">theme</strong>    - Toggle dark / light color scheme
   <strong class="highlight-text">hired</strong>    - Launch the fast-track hiring script
   <strong class="highlight-text">clear</strong>    - Clear the terminal history
   <strong class="highlight-text">help</strong>     - Show this guide`,
@@ -228,17 +188,6 @@ Available commands:
 3. <strong class="highlight-text">fintech Installment Portal</strong> - Installment portal for consumer microloans and bill pay.
 4. <strong class="highlight-text">Vehicle OCR Ingestion</strong> - Asynchronous ML image OCR ingestion pipeline using RabbitMQ.`,
     
-    theme: () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", newTheme);
-      const metaColorScheme = document.querySelector('meta[name="color-scheme"]');
-      if (metaColorScheme) {
-        metaColorScheme.content = newTheme === "dark" ? "dark" : "light";
-      }
-      localStorage.setItem("theme", newTheme);
-      return `Theme toggled to <strong class="highlight-text">${newTheme.toUpperCase()}</strong>.`;
-    },
 
     hired: () => {
       // Fast track to contact form

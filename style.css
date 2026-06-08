@@ -74,183 +74,45 @@
     --transition-normal: 350ms cubic-bezier(0.16, 1, 0.3, 1);
     --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
 
-    /* --- Theme Core Fallbacks (Light Mode Default) --- */
-    --color-bg-raw: 216, 33%, 97%; /* #f4f6f8 */
+    /* --- Theme Core (Dark only) --- */
+    --color-bg-raw: 225, 25%, 3%; /* #040508 - extremely deep slate/black */
     --color-bg: hsl(var(--color-bg-raw));
-    --color-text-raw: 224, 32%, 12%; /* #141722 */
-    --color-text: hsl(var(--color-text-raw));
-    --color-text-muted: hsl(220, 15%, 45%);
-    
-    /* Neon accents for AI aesthetic */
-    --color-accent-raw: 250, 85%, 60%; /* #5c3cf2 - Indigo */
-    --color-accent: hsl(var(--color-accent-raw));
-    --color-accent-glow: hsla(var(--color-accent-raw), 0.12);
-    --color-accent-two: hsl(195, 100%, 42%); /* #0099c4 - Cyan */
-    --color-accent-three: hsl(320, 95%, 55%); /* #ff1a8c - Rose/Magenta */
-    
-    --color-surface-raw: 0, 0%, 100%; /* #ffffff */
-    --color-surface: hsl(var(--color-surface-raw));
-    --color-border-raw: 220, 15%, 88%;
-    --color-border: hsl(var(--color-border-raw));
-    
-    /* Liquid Glass styling values for Light Mode */
-    --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%);
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-border-outer: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 
-      0 10px 40px -10px rgba(0, 0, 0, 0.04), 
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.02);
-    --glass-blur: 24px;
-    
-    /* Background blob colors (Light Theme) */
-    --blob-1: rgba(92, 60, 242, 0.12);
-    --blob-2: rgba(0, 176, 208, 0.15);
-    --blob-3: rgba(255, 26, 140, 0.08);
-    --grid-color: rgba(0, 0, 0, 0.02);
-    
-    --scrollbar-thumb: hsl(220, 15%, 80%);
-    --scrollbar-track: hsl(220, 20%, 94%);
-    
-    color-scheme: light dark;
-  }
-
-  /* --- Dark Theme overrides via prefers-color-scheme (Fallback) --- */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-bg-raw: 225, 25%, 3%; /* #040508 - extremely deep slate/black */
-      --color-bg: hsl(var(--color-bg-raw));
-      --color-text-raw: 210, 40%, 96%; /* #f1f5f9 */
-      --color-text: hsl(var(--color-text-raw));
-      --color-text-muted: hsl(215, 15%, 68%);
-      
-      /* Glowing neon colors for dark AI look */
-      --color-accent-raw: 185, 100%, 48%; /* #00f0ff - Electric Cyan */
-      --color-accent: hsl(var(--color-accent-raw));
-      --color-accent-glow: hsla(var(--color-accent-raw), 0.2);
-      --color-accent-two: 272, 95%, 60%; /* #9d4edd - Neon Purple */
-      --color-accent-three: 325, 100%, 55%; /* #ff007f - Neon Magenta */
-      
-      --color-surface-raw: 225, 20%, 8%; /* #0f1118 */
-      --color-surface: hsl(var(--color-surface-raw));
-      --color-border-raw: 220, 25%, 15%;
-      --color-border: hsl(var(--color-border-raw));
-      
-      /* Liquid Glass styling values for Dark Mode */
-      --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-border-outer: rgba(255, 255, 255, 0.03);
-      --glass-shadow: 
-        0 20px 50px -10px rgba(0, 0, 0, 0.5), 
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
-        inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
-      
-      /* Background blob colors (Dark Theme) */
-      --blob-1: rgba(0, 240, 255, 0.18);
-      --blob-2: rgba(157, 78, 221, 0.22);
-      --blob-3: rgba(255, 0, 127, 0.12);
-      --grid-color: rgba(255, 255, 255, 0.015);
-      
-      --scrollbar-thumb: hsl(220, 15%, 20%);
-      --scrollbar-track: hsl(225, 25%, 5%);
-    }
-  }
-
-  /* --- Explicit user selection via data-theme attribute --- */
-  [data-theme="light"] {
-    --color-bg-raw: 216, 33%, 97%;
-    --color-bg: hsl(var(--color-bg-raw));
-    --color-text-raw: 224, 32%, 12%;
-    --color-text: hsl(var(--color-text-raw));
-    --color-text-muted: hsl(220, 15%, 45%);
-    --color-accent-raw: 250, 85%, 60%;
-    --color-accent: hsl(var(--color-accent-raw));
-    --color-accent-glow: hsla(var(--color-accent-raw), 0.12);
-    --color-accent-two: hsl(195, 100%, 42%);
-    --color-accent-three: hsl(320, 95%, 55%);
-    --color-surface-raw: 0, 0%, 100%;
-    --color-surface: hsl(var(--color-surface-raw));
-    --color-border-raw: 220, 15%, 88%;
-    --color-border: hsl(var(--color-border-raw));
-    
-    --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%);
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-border-outer: rgba(0, 0, 0, 0.05);
-    --glass-shadow: 
-      0 10px 40px -10px rgba(0, 0, 0, 0.04), 
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.8),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.02);
-    --blob-1: rgba(92, 60, 242, 0.12);
-    --blob-2: rgba(0, 176, 208, 0.15);
-    --blob-3: rgba(255, 26, 140, 0.08);
-    --grid-color: rgba(0, 0, 0, 0.02);
-    --scrollbar-thumb: hsl(220, 15%, 80%);
-    --scrollbar-track: hsl(220, 20%, 94%);
-  }
-
-  [data-theme="dark"] {
-    --color-bg-raw: 225, 25%, 3%;
-    --color-bg: hsl(var(--color-bg-raw));
-    --color-text-raw: 210, 40%, 96%;
+    --color-text-raw: 210, 40%, 96%; /* #f1f5f9 */
     --color-text: hsl(var(--color-text-raw));
     --color-text-muted: hsl(215, 15%, 68%);
-    --color-accent-raw: 185, 100%, 48%;
+
+    /* Glowing neon colors for dark AI look */
+    --color-accent-raw: 185, 100%, 48%; /* #00f0ff - Electric Cyan */
     --color-accent: hsl(var(--color-accent-raw));
     --color-accent-glow: hsla(var(--color-accent-raw), 0.2);
-    --color-accent-two: hsl(272, 95%, 60%);
-    --color-accent-three: hsl(325, 100%, 55%);
-    --color-surface-raw: 225, 20%, 8%;
+    --color-accent-two: hsl(272, 95%, 60%); /* #9d4edd - Neon Purple */
+    --color-accent-three: hsl(325, 100%, 55%); /* #ff007f - Neon Magenta */
+
+    --color-surface-raw: 225, 20%, 8%; /* #0f1118 */
     --color-surface: hsl(var(--color-surface-raw));
     --color-border-raw: 220, 25%, 15%;
     --color-border: hsl(var(--color-border-raw));
-    
+
+    /* Liquid Glass styling values */
     --glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
     --glass-border: rgba(255, 255, 255, 0.08);
     --glass-border-outer: rgba(255, 255, 255, 0.03);
-    --glass-shadow: 
-      0 20px 50px -10px rgba(0, 0, 0, 0.5), 
+    --glass-shadow:
+      0 20px 50px -10px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
       inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
+    --glass-blur: 24px;
+
+    /* Background blob colors */
     --blob-1: rgba(0, 240, 255, 0.18);
     --blob-2: rgba(157, 78, 221, 0.22);
     --blob-3: rgba(255, 0, 127, 0.12);
     --grid-color: rgba(255, 255, 255, 0.015);
+
     --scrollbar-thumb: hsl(220, 15%, 20%);
     --scrollbar-track: hsl(225, 25%, 5%);
-  }
 
-  /* --- Modern CSS light-dark() feature support --- */
-  @supports (color: light-dark(white, black)) {
-    :root {
-      --color-bg: light-dark(hsl(216, 33%, 97%), hsl(225, 25%, 3%));
-      --color-text: light-dark(hsl(224, 32%, 12%), hsl(210, 40%, 96%));
-      --color-text-muted: light-dark(hsl(220, 15%, 45%), hsl(215, 15%, 68%));
-      --color-accent: light-dark(hsl(250, 85%, 60%), hsl(185, 100%, 48%));
-      --color-accent-glow: light-dark(hsla(250, 85%, 60%, 0.12), hsla(185, 100%, 48%, 0.2));
-      --color-accent-two: light-dark(hsl(195, 100%, 42%), hsl(272, 95%, 60%));
-      --color-accent-three: light-dark(hsl(320, 95%, 55%), hsl(325, 100%, 55%));
-      --color-surface: light-dark(hsl(0, 0%, 100%), hsl(225, 20%, 8%));
-      --color-border: light-dark(hsl(220, 15%, 88%), hsl(220, 25%, 15%));
-      
-      --glass-bg: light-dark(
-        linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%)
-      );
-      --glass-border: light-dark(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.08));
-      --glass-border-outer: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.03));
-      --glass-shadow: light-dark(
-        (0 10px 40px -10px rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 0 rgba(0, 0, 0, 0.02)),
-        (0 20px 50px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 0 rgba(0, 0, 0, 0.4))
-      );
-      
-      --blob-1: light-dark(rgba(92, 60, 242, 0.12), rgba(0, 240, 255, 0.18));
-      --blob-2: light-dark(rgba(0, 176, 208, 0.15), rgba(157, 78, 221, 0.22));
-      --blob-3: light-dark(rgba(255, 26, 140, 0.08), rgba(255, 0, 127, 0.12));
-      --grid-color: light-dark(rgba(0, 0, 0, 0.02), rgba(255, 255, 255, 0.015));
-      
-      --scrollbar-thumb: light-dark(hsl(220, 15%, 80%), hsl(220, 15%, 20%));
-      --scrollbar-track: light-dark(hsl(220, 20%, 94%), hsl(225, 25%, 5%));
-    }
+    color-scheme: dark;
   }
 
   /* HTML/Body styling */
@@ -503,10 +365,6 @@
     box-shadow: 0 4px 20px 0 var(--color-accent-glow);
   }
   
-  [data-theme="light"] .btn-primary {
-    color: #fff !important;
-  }
-
   .btn-primary:hover {
     filter: brightness(1.1);
     box-shadow: 0 8px 30px 0 var(--color-accent-glow);
@@ -616,33 +474,6 @@
     align-items: center;
     gap: var(--space-sm);
   }
-
-  /* Theme Button Component */
-  .theme-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    color: var(--color-text);
-    transition: border-color var(--transition-fast), background var(--transition-fast);
-    min-block-size: 40px;
-    min-inline-size: 40px;
-  }
-
-  .theme-btn:hover {
-    border-color: var(--color-accent);
-    background: var(--color-accent-glow);
-  }
-
-  .sun-icon { display: none; }
-  .moon-icon { display: block; }
-
-  [data-theme="dark"] .sun-icon { display: block; }
-  [data-theme="dark"] .moon-icon { display: none; }
 
   /* Mobile hamburger button */
   .mobile-toggle-btn {

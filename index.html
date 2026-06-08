@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4J0Y87FEVF"></script>
@@ -80,18 +80,7 @@
   }
   </script>
 
-  <!-- Prevent Flash of Unstyled Content (FOUC) -->
-  <meta name="color-scheme" content="light dark">
-  <script>
-    {
-      const savedTheme = localStorage.getItem("theme");
-      const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
-      
-      document.documentElement.setAttribute("data-theme", theme);
-      document.querySelector('meta[name="color-scheme"]').content = theme === "dark" ? "dark" : "light";
-    }
-  </script>
+  <meta name="color-scheme" content="dark">
 </head>
 <body>
 
