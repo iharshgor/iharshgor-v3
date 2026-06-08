@@ -1,0 +1,42 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Overview
+
+This is the personal portfolio site for Harsh Gor (https://iharshgor.com) — a **vanilla static site** with no build step, no framework, and no package manager. It is three hand-written files served directly: `index.html`, `style.css`, `app.js`. Deployment is via Netlify (the repo root is the publish directory).
+
+There is no `npm`, no bundler, no transpiler, and no test suite. Edits to the source files are the final shipped artifacts.
+
+## Development
+
+- **Preview locally**: open `index.html` directly in a browser, or run any static server from the repo root (e.g. `python3 -m http.server 8000`). Note that the contact form's POST to `/` only works on Netlify, not via a plain local server.
+- **Deploy**: push to `main`; Netlify publishes the repo root (`publish = "."` in `netlify.toml`). No build command runs.
+- **Lint/tests**: none exist. Validate changes by eye in the browser.
+
+## Architecture
+
+### `app.js` — initializer pattern
+A single `DOMContentLoaded` handler calls a series of independent, self-guarding `init*()` functions in order: `initTheme`, `initCanvasBackground`, `initTerminal`, `initTabs`, `initProjectsFilter`, `initContactForm`, `initMobileMenu`, `initScrollAnimationsFallback`. Each function queries its own DOM nodes and early-returns if they are absent, so features are decoupled. To add a feature, write a new `initX()` and register it in the `DOMContentLoaded` list.
+
+Notable subsystems:
+- **Interactive terminal** (`initTerminal`): the hero section's centerpiece. Commands live in the `commands` object keyed by name (`help`, `neofetch`, `about`, `skills`, `projects`, `hired`, `clear`). Each value is a function returning an HTML string (or performing a side effect). Add a command by adding a key — and update the `help` text. The `hired` command auto-fills and scrolls to the contact form.
+- **Canvas particle background** (`initCanvasBackground`): full-screen `#bg-canvas` with mouse-reactive particles.
+- **Theme**: the site is **dark-only**. `<html data-theme="dark">` is hardcoded and `:root` in `style.css` holds the dark token values directly (no light fallback, no `prefers-color-scheme`, no `light-dark()`). There is no theme toggle. If reintroducing a light theme, restore the `[data-theme="light"]` variable set, the toggle UI, and `color-scheme: light dark`.
+- **Tabs / project filters**: `initTabs` (skills section, ARIA-driven with arrow-key nav) and `initProjectsFilter` (data-`data-category` matching against `data-filter` buttons).
+
+### Contact form — Netlify Forms
+The form (`#contact-form`) uses `data-netlify="true"`. Submission is intercepted in `initContactForm`: client-side validation runs first (custom validity messages via `setCustomValidity`), then it POSTs URL-encoded form data to `/` via `fetch`, shows a spinner, and opens the `<dialog id="success-dialog">` on success. The `name="contact"` attribute is what Netlify keys the form on — do not rename it.
+
+### Scroll animations
+Uses native CSS scroll-driven animations (`animation-timeline: view()`). `initScrollAnimationsFallback` feature-detects support via `CSS.supports` and applies a JS/IntersectionObserver fallback only when the browser lacks it. Elements opt in with the `.scroll-reveal` class.
+
+### `style.css`
+Single large stylesheet using CSS custom properties for theming (driven by `[data-theme]`). Glassmorphism (`.glass-card`, `.glass-dialog`) is a recurring visual motif. Mobile layout and the hamburger drawer (`#mobile-nav`, toggled by `initMobileMenu` which also locks body scroll via the `no-scroll` class) are handled here.
+
+## Conventions & gotchas
+
+- **SEO/meta is load-bearing.** `index.html`'s head contains canonical URL, Open Graph + Twitter cards (pointing at `og-preview.png`, 1200×630), and a JSON-LD `application/ld+json` block. `sitemap.xml`, `robots.txt`, and `ads.txt` are also shipped. Keep these consistent when content (title, description, sections) changes.
+- **Analytics**: Google Analytics (GA4, `G-4J0Y87FEVF`) and Google AdSense are loaded in the head.
+- **Caching**: `netlify.toml` sets `*.css` and `*.js` to `immutable` 1-year cache. Because filenames are not hashed, a hard refresh may be needed to see local changes reflected against a deployed version, but this does not affect deploys (Netlify invalidates on change).
+- Section `id`s in `index.html` (`#hero`, `#about`, `#experience`, `#skills`, `#projects`, `#contact`) are the nav anchor targets — renaming one means updating both nav menus (desktop `.main-nav` and mobile drawer).
